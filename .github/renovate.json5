@@ -20,7 +20,7 @@
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
   },
-  "terraform": {
+  "regex": {
     "fileMatch": [".+\\.tf$"]
   },
  }
