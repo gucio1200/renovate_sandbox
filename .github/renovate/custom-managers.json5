@@ -1,0 +1,44 @@
+{
+   "$schema":"https://docs.renovatebot.com/renovate-schema.json",
+   "customManagers":[
+      {
+         "customType":"regex",
+         "description":"Process various dependencies in YAML files",
+         "fileMatch":[
+            "\\.ya?ml(\\.j2)?$"
+         ],
+         "matchStrings":[
+            "\\S+: \"?(?<currentValue>[^\"\\s]+)\"? # ?renovate: depName=(?<depName>\\S+)( datasource=(?<datasource>\\S+))?( versioning=(?<versioning>\\S+))?( extractVersion=(?<extractVersion>\\S+))?",
+            "(?m:^\\s+?# ?renovate: depName=(?<depName>\\S+)( datasource=(?<datasource>\\S+))?( versioning=(?<versioning>\\S+))?( extractVersion=(?<extractVersion>\\S+))?\\n[ \\t ]*?\\S+: \"?(?<currentValue>[^\" ]+?)\"?$)"
+         ],
+         "datasourceTemplate":"{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+         "versioningTemplate":"{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+         "extractVersionTemplate":"{{#if extractVersion}}{{{extractVersion}}}{{else}}^v?(?<version>.*)${{/if}}"
+      },
+      {
+         "customType":"regex",
+         "description":"Process GitHub download dependencies in YAML files",
+         "fileMatch":[
+            "\\.ya?ml(\\.j2)?$"
+         ],
+         "matchStrings":[
+            "https:\\/\\/github.com\\/(?<depName>\\S+?\\/\\S+?)\\/releases\\/download\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+",
+            "https:\\/\\/raw.githubusercontent.com\\/(?<depName>\\S+?\\/\\S+?)\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+"
+         ],
+         "datasourceTemplate":"{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+         "versioningTemplate":"{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+      },
+      {
+         "customType":"regex",
+         "description":"Process terraform locales",
+         "fileMatch": [".+\\.tf$"],
+         "matchStrings": [
+                    "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<depName>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+         ],
+         "depNameTemplate": "{{packageName}}",
+         "datasourceTemplate": "{{datasource}}",
+         "versioningTemplate": "semver",
+         "registryUrlTemplate": "{{registryUrl}}"
+      }
+   ]
+}
