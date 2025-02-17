@@ -22,7 +22,7 @@ locals {
   linkerd-crds_version     = "1.8.0"
 
   # renovate: depName=linkerd/linkerd2 datasource=github-releases
-  linkerd_version          = "1.16.11"
+  linkerd_version          = "v18.9.1"
 
   # renovate: depName=traefik/traefik-helm-chart datasource=github-releases
   traefik_version          = "33.2.1"
