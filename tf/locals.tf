@@ -13,7 +13,7 @@ locals {
   # renovate: depName=jetstack/trust-manager datasource=github-releases
   trust_manager_version    = "v0.14.0"
   # renovate: depName=jetstack/cert-manager datasource=github-releases
-  cert_manager_version     = "v1.16.2"
+  cert_manager_version     = "v1.17.1"
   # renovate: depName=linkerd/linkerd2 datasource=github-releases
   linkerd-crds_version     = "1.8.0"
   # renovate: depName=linkerd/linkerd2 datasource=github-releases
