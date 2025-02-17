@@ -25,5 +25,5 @@ locals {
   linkerd_version          = "1.16.11"
 
   # renovate: depName=traefik/traefik-helm-chart datasource=github-releases
-  traefik_version          = "33.2.1"
+  traefik_version          = "34.3.0"
 }
