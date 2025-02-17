@@ -13,7 +13,7 @@ locals {
   external_secrets_version = "0.11.0"
 
   # renovate: depName=trust-manager datasource=helm registryUrl=https://charts.jetstack.io
-  trust_manager_version    = "v0.14.0"
+  trust_manager_version    = "v0.15.0"
 
   # renovate: depName=cert-manager datasource=helm registryUrl=https://charts.jetstack.io
   cert_manager_version     = "v1.16.2"
