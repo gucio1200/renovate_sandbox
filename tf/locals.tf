@@ -7,7 +7,7 @@ locals {
   tenant-id                = data.azurerm_client_config.current.tenant_id
 
   # renovate: depName=argo-cd datasource=helm registryUrl=https://argoproj.github.io/argo-helm
-  argocd_version           = "7.7.10"
+  argocd_version           = "7.7.23"
 
   # renovate: depName=external-secrets datasource=helm registryUrl=https://charts.external-secrets.io
   external_secrets_version = "0.11.0"
