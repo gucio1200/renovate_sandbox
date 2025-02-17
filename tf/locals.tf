@@ -16,7 +16,7 @@ locals {
   trust_manager_version    = "v0.14.0"
 
   # renovate: depName=cert-manager datasource=helm registryUrl=https://charts.jetstack.io
-  cert_manager_version     = "v1.16.2"
+  cert_manager_version     = "v1.16.4"
 
   # renovate: depName=linkerd-crds datasource=helm registryUrl=https://helm.linkerd.io/stable
   linkerd-crds_version     = "1.8.0"
