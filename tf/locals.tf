@@ -12,5 +12,5 @@ locals {
   # renovate: depName=linkerd-control-plane datasource=helm registryUrl=https://helm.linkerd.io/stable
   linkerd_version          = "1.16.11"
   # renovate: depName=traefik datasource=helm registryUrl=https://traefik.github.io/charts
-  traefik_version          = "33.2.1"
+  traefik_version          = "34.3.0"
 }
