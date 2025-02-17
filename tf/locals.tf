@@ -10,9 +10,9 @@ locals {
   argocd_version           = "7.7.10"
   # renovate: depName=external-secrets/external-secrets datasource=github-releases
   external_secrets_version = "0.11.0"
-  # renovate: depName=jetstack/trust-manager datasource=github-releases
+  # renovate: depName=cert-manager/trust-manager datasource=github-releases
   trust_manager_version    = "v0.14.0"
-  # renovate: depName=jetstack/cert-manager datasource=github-releases
+  # renovate: depName=cert-manager/cert-manager datasource=github-releases
   cert_manager_version     = "v1.16.2"
   # renovate: depName=linkerd/linkerd2 datasource=github-releases
   linkerd-crds_version     = "1.8.0"
