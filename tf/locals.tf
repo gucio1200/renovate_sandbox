@@ -10,7 +10,7 @@ locals {
   argocd_version           = "7.7.10"
 
   # renovate: depName=external-secrets/external-secrets datasource=github-releases
-  external_secrets_version = "0.11.0"
+  external_secrets_version = "0.14.2"
 
   # renovate: depName=cert-manager/trust-manager datasource=github-releases
   trust_manager_version    = "v0.14.0"
