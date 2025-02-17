@@ -7,7 +7,7 @@ locals {
   tenant-id                = data.azurerm_client_config.current.tenant_id
 
   # renovate: depName=argoproj/argo-helm datasource=github-releases
-  argocd_version           = "7.7.10"
+  argo-cd_version           = "7.7.10"
   # renovate: depName=external-secrets/external-secrets datasource=github-releases
   external_secrets_version = "0.11.0"
   # renovate: depName=cert-manager/trust-manager datasource=github-releases
