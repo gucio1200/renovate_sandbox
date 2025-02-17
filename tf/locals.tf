@@ -13,7 +13,7 @@ locals {
   external_secrets_version = "0.11.0"
 
   # renovate: depName=cert-manager/trust-manager datasource=github-releases
-  trust_manager_version    = "v0.14.0"
+  trust_manager_version    = "v0.16.0"
 
   # renovate: depName=cert-manager/cert-manager datasource=github-releases
   cert_manager_version     = "v1.16.2"
