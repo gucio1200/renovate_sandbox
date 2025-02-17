@@ -1,6 +1,6 @@
 locals {
   # renovate: depName=argo-cd datasource=helm registryUrl=https://argoproj.github.io/argo-helm
-  argocd_version           = "7.7.10"
+  argocd_version           = "7.8.2"
   # renovate: depName=external-secrets datasource=helm registryUrl=https://charts.external-secrets.io
   external_secrets_version = "0.11.0"
   # renovate: depName=trust-manager datasource=helm registryUrl=https://charts.jetstack.io
