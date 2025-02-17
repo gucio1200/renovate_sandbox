@@ -4,7 +4,7 @@ locals {
   # renovate: depName=external-secrets datasource=helm registryUrl=https://charts.external-secrets.io
   external_secrets_version = "0.11.0"
   # renovate: depName=trust-manager datasource=helm registryUrl=https://charts.jetstack.io
-  trust_manager_version    = "v0.14.0"
+  trust_manager_version    = "v0.16.0"
   # renovate: depName=cert-manager datasource=helm registryUrl=https://charts.jetstack.io
   cert_manager_version     = "v1.16.2"
   # renovate: depName=linkerd-crds datasource=helm registryUrl=https://helm.linkerd.io/stable
