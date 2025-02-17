@@ -9,7 +9,7 @@
     "github>gucio1200/renovate_sandbox//.github/renovate/groups.json5",
     "github>gucio1200/renovate_sandbox//.github/renovate/clusters.json5",
     "github>gucio1200/renovate_sandbox//.github/renovate/grafanaDashboards.json5",
-    "github>gucio1200/renovate_sandbox//.github/renovate/custom-managers.json5"
+#    "github>gucio1200/renovate_sandbox//.github/renovate/custom-managers.json5"
   ],
   "flux": {
     "fileMatch": [".+\\.ya?ml$"]
@@ -19,5 +19,8 @@
   },
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
+  },
+  "terraform": {
+    "fileMatch": [".+\\.tf$"]
   },
  }
