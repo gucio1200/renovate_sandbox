@@ -40,8 +40,9 @@ jobs:
               OUTPUT=$(echo "$OUTPUT" | jq --arg folder "$folder" '. += [$folder]')
             done
           done
+          OUTPUT=$(echo "$OUTPUT" | jq -c .)
           echo $OUTPUT
-#          echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
+          echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
 #      - name: Use the output in a subsequent step
 #        run: echo ${{ steps.expand-list.outputs.folder_list }}
