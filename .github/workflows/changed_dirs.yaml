@@ -38,9 +38,9 @@ jobs:
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
             SUBFOLDERS=$(find "$path" -type d -mindepth $((DEPTH_LOOK - DEPTH)) -maxdepth $((DEPTH_LOOK - DEPTH)))
             for folder in $SUBFOLDERS; do
-              IFS='/' read -r matrix region cluster <<< "$folder"
-              OUTPUT=$(echo "$OUTPUT" | jq --arg matrix "$matrix" --arg region "$region" --arg cluster "$cluster" \
-              '.include += [{"matrix": $matrix, "region": $region, "cluster": $cluster}]')
+              IFS='/' read -r workspace region cluster <<< "$folder"
+              OUTPUT=$(echo "$OUTPUT" | jq --arg workspace "$workspace" --arg region "$region" --arg cluster "$cluster" \
+              '.include += [{"workspace": $workspace, "region": $region, "cluster": $cluster}]')
             done
           done
           OUTPUT=$(echo "$OUTPUT" | jq -c '.include |= unique')
