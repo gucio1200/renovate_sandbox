@@ -40,4 +40,4 @@ jobs:
           echo "folder_list=$OUTPUT" >> $GITHUB_ENV
 
       - name: Use the output in a subsequent step
-        run: echo "The unique folders are: ${{ env.folder_list }}"
+        run: echo ${{ env.folder_list }}
