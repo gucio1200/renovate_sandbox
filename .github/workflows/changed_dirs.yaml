@@ -44,5 +44,5 @@ jobs:
           echo $OUTPUT
           echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
-      - name: Use the output in a subsequent step
+      - name: Show change list
         run: echo ${{ steps.expand-list.outputs.folder_list }}
