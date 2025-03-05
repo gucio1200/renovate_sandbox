@@ -46,5 +46,5 @@ jobs:
           echo $OUTPUT
           echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
-      - name: Show change list
-        run: echo ${{ steps.expand-list.outputs.folder_list }}
+#      - name: Show change list
+#        run: echo ${{ steps.expand-list.outputs.folder_list }}
