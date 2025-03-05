@@ -40,7 +40,7 @@ jobs:
               OUTPUT=$(echo "$OUTPUT" | jq --arg folder "$folder" '. += [$folder]')
             done
           done
-          OUTPUT=$(echo "$OUTPUT" | jq -c .)
+          OUTPUT=$(echo "$OUTPUT" | jq -c 'unique')
           echo $OUTPUT
           echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
