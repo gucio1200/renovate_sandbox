@@ -21,9 +21,9 @@ jobs:
           dir_names: true
           separator: ","
           files: |
-            */*/*/*.tf
-            */*/*/*.hcl
-            */*/*/*.tfvars
+            **.tf
+            **.hcl
+            **.tfvars
             !*/*/*/bootstrap/**
 
       - name: List all changed files
