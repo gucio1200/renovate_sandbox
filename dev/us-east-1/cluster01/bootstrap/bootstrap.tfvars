@@ -1,1 +1,1 @@
-lolo
+bootstrap_vars
