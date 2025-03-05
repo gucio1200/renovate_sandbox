@@ -28,3 +28,18 @@ jobs:
 
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
+
+      - name: Expand List
+        run: |
+          echo "Checking subfolders..."
+          INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
+          declare -A UNIQUE_FOLDERS
+          for path in "${INPUT_LIST[@]}"; do
+              DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
+              if [[ "$DEPTH" -ne 3 ]]; then
+                  while IFS= read -r subfolder; do
+                      UNIQUE_FOLDERS["$subfolder"]=1
+                  done < <(find "$path" -type d)
+              fi
+          done
+          printf "%s\n" "${!UNIQUE_FOLDERS[@]}"
