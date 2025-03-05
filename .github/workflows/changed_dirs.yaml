@@ -20,8 +20,8 @@ jobs:
         uses: tj-actions/changed-files@315505acf41d2913b71af48080fb158cd01f79e7
         with:
           files: |
-            *.tf
-            *.hcl
+            **/*.tf
+            **/*.hcl
             !**/**/**/botstrap/**
 
       - name: List all changed files
