@@ -29,9 +29,15 @@ jobs:
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
       - name: Expand List
+        id: expand-list
         run: |
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
-            [[ "$DEPTH" -lt 3 ]] && find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH))
+            SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
+            OUTPUT+="$SUBFOLDERS"$'\n'
           done
+          echo "::set-output name=folder_list::$OUTPUT"
+
+      - name: Use the output in a subsequent step
+        run: echo "The unique folders are: ${{ steps.expand-list.outputs.folder_list }}"
