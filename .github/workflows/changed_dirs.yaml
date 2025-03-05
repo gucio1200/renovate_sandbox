@@ -6,7 +6,7 @@ on:
       - "**"
     paths:
       - "**"
-      - "!**/**/bootstrap/**"
+      - "!**/**/**/bootstrap/**"
 
 jobs:
   generate_matrix:
@@ -19,7 +19,10 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@315505acf41d2913b71af48080fb158cd01f79e7
         with:
-          matrix: true
+          files: |
+            *.tf
+            *.hcl
+            !**/**/**/botstrap/**
 
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
