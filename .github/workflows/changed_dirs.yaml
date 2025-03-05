@@ -32,15 +32,17 @@ jobs:
         id: expand-list
         run: |
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
-          OUTPUT="[]"
+          OUTPUT='{"include": []}'
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
             SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
             for folder in $SUBFOLDERS; do
-              OUTPUT=$(echo "$OUTPUT" | jq --arg folder "$folder" '. += [$folder]')
+              IFS='/' read -r matrix region cluster <<< "$folder"
+              OUTPUT=$(echo "$OUTPUT" | jq --arg matrix "$matrix" --arg region "$region" --arg cluster "$cluster" \
+              '.include += [{"matrix": $matrix, "region": $region, "cluster": $cluster}]')
             done
           done
-          OUTPUT=$(echo "$OUTPUT" | jq -c 'unique')
+          OUTPUT=$(echo "$OUTPUT" | jq -c '.include |= unique')
           echo $OUTPUT
           echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
