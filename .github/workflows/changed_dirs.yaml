@@ -38,7 +38,7 @@ jobs:
             SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
             OUTPUT+="$SUBFOLDERS"$'\n'
           done
-          echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
+          echo "folder_list='$OUTPUT'" >> $GITHUB_OUTPUT
 
 #      - name: Use the output in a subsequent step
 #        run: echo ${{ steps.expand-list.outputs.folder_list }}
