@@ -36,12 +36,12 @@ jobs:
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
             SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
-            OUTPUT+="$SUBFOLDERS"$'\n'
+            OUTPUT+="$SUBFOLDERS "
           done
           echo $OUTPUT
-          echo "subfolders_output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          OUTPUT="${OUTPUT%"${OUTPUT##*[![:space:]]}"}"
+          echo $OUTPUT
+          echo "subfolders_output=$OUTPUT" >> $GITHUB_OUTPUT
 
 #      - name: Use the output in a subsequent step
 #        run: echo ${{ steps.expand-list.outputs.folder_list }}
