@@ -39,6 +39,7 @@ jobs:
             OUTPUT+="$SUBFOLDERS"
           done
           echo $OUTPUT
+          echo "subfolders_output=$OUTPUT" >> $GITHUB_OUTPUT
 #          echo "folder_list='$OUTPUT'" >> $GITHUB_OUTPUT
 
 #      - name: Use the output in a subsequent step
