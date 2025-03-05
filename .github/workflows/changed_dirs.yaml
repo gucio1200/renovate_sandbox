@@ -31,11 +31,12 @@ jobs:
       - name: Expand List
         id: expand-list
         run: |
+          DEPTH_LOOK=3
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
           OUTPUT='{"include": []}'
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
-            SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
+            SUBFOLDERS=$(find "$path" -type d -mindepth $((DEPTH_LOOK - DEPTH)) -maxdepth $((DEPTH_LOOK - DEPTH)))
             for folder in $SUBFOLDERS; do
               IFS='/' read -r matrix region cluster <<< "$folder"
               OUTPUT=$(echo "$OUTPUT" | jq --arg matrix "$matrix" --arg region "$region" --arg cluster "$cluster" \
