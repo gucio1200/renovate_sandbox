@@ -19,7 +19,6 @@ jobs:
         uses: tj-actions/changed-files@315505acf41d2913b71af48080fb158cd01f79e7
         with:
           dir_names: true
-#          separator: ","
           files: |
             **.tf
             **.hcl
@@ -31,15 +30,8 @@ jobs:
 
       - name: Expand List
         run: |
-          echo "Checking subfolders..."
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
-          declare -A UNIQUE_FOLDERS
           for path in "${INPUT_LIST[@]}"; do
-              DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
-              if [[ "$DEPTH" -ne 3 ]]; then
-                  while IFS= read -r subfolder; do
-                      UNIQUE_FOLDERS["$subfolder"]=1
-                  done < <(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
-              fi
+            DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
+            [[ "$DEPTH" -lt 3 ]] && find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH))
           done
-          printf "%s\n" "${!UNIQUE_FOLDERS[@]}"
