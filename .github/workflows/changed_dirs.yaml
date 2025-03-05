@@ -39,7 +39,7 @@ jobs:
               if [[ "$DEPTH" -ne 3 ]]; then
                   while IFS= read -r subfolder; do
                       UNIQUE_FOLDERS["$subfolder"]=1
-                  done < <(find "$path" -type d)
+                  done < <(find "$path" -type d -mindepth 3 -maxdepth 3)
               fi
           done
           printf "%s\n" "${!UNIQUE_FOLDERS[@]}"
