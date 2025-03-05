@@ -32,6 +32,7 @@ jobs:
         id: expand-list
         run: |
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
+          OUTPUT=""
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
             SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
