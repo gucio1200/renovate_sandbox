@@ -5,8 +5,7 @@ on:
     branches:
       - "**"
     paths:
-      - "*/**"
-      - "!*/*/*/bootstrap/**"
+      - "**"
 
 jobs:
   generate_matrix:
