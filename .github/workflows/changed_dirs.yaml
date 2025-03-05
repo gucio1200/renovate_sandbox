@@ -19,6 +19,7 @@ jobs:
         uses: tj-actions/changed-files@315505acf41d2913b71af48080fb158cd01f79e7
         with:
           dir_names: true
+          separator: ","
           files: |
             */*/*/*.tf
             */*/*/*.hcl
