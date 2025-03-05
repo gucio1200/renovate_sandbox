@@ -5,23 +5,16 @@ on:
     branches:
       - main
     paths:
-      - '**/**/bootstrap/**'
+      - "**"
+      - "!**/**/bootstrap/**"
 
 jobs:
-  list-changed-files:
+  generate_matrix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Get changed files in push
-        if: github.event_name == 'push'
-        run: |
-          echo "Changed files in push:"
-          git diff --name-only HEAD^ HEAD
-
-      - name: Get changed files in pull request
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "Changed files in pull request:"
-          git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@c3a1bb2c992d77180ae65be6ae6c166cf40f857c
