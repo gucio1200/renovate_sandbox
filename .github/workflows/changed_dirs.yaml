@@ -36,7 +36,7 @@ jobs:
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
             SUBFOLDERS=$(find "$path" -type d -mindepth $((3 - DEPTH)) -maxdepth $((3 - DEPTH)))
-            OUTPUT+="$SUBFOLDERS"
+            OUTPUT+=$(echo "$SUBFOLDERS" | sed 's|/|_|g')$'\n'
           done
           echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
 
