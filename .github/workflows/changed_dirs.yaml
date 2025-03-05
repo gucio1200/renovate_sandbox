@@ -20,9 +20,10 @@ jobs:
         uses: tj-actions/changed-files@315505acf41d2913b71af48080fb158cd01f79e7
         with:
           files: |
-            **/*.tf
-            **/*.hcl
-            !**/**/**/botstrap/**
+            **.tf
+            **.hcl
+            **.tfvars
+            !**/**/**/bootstrap/**
 
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
