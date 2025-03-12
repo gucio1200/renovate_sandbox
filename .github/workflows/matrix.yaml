@@ -1,6 +1,9 @@
 name: Matrix
 
 on:
+  pull_request:
+    branches:
+      - "**"
   push:
     branches:
       - "**"
