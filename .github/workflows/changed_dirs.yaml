@@ -7,9 +7,14 @@ on:
     paths:
       - "**"
 
+concurrency:
+  group: ${{ github.workflow }}
+
 jobs:
-  generate_matrix:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,8 +33,8 @@ jobs:
       - name: List all changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
 
-      - name: Expand List
-        id: expand-list
+      - name: Generate Matrix
+        id: generate-matrix
         run: |
           DEPTH_LOOK=3
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
@@ -45,7 +50,23 @@ jobs:
           done
           OUTPUT=$(echo "$OUTPUT" | jq -c '.include |= unique')
           echo $OUTPUT
-          echo "folder_list=$OUTPUT" >> $GITHUB_OUTPUT
+          echo "matrix=$OUTPUT" >> $GITHUB_OUTPUT
 
-#      - name: Show change list
-#        run: echo ${{ steps.expand-list.outputs.folder_list }}
+  deploy:
+    if: ${{ needs.prepare.outputs.matrix != '{"include":[]}' && needs.prepare.outputs.matrix != '' }}
+    name: Deploy ${{ github.ref_name }} to ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    environment: ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - run: echo ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
+
+      - name: Force failure
+        run: exit 1
