@@ -1,4 +1,4 @@
-name: Echo Changed Files
+name: Matrix
 
 on:
   push:
@@ -11,7 +11,7 @@ concurrency:
   group: ${{ github.workflow }}
 
 jobs:
-  prepare:
+  matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
@@ -53,14 +53,14 @@ jobs:
           echo "matrix=$OUTPUT" >> $GITHUB_OUTPUT
 
   deploy:
-    if: ${{ needs.prepare.outputs.matrix != '{"include":[]}' && needs.prepare.outputs.matrix != '' }}
+    if: ${{ needs.matrix.outputs.matrix != '{"include":[]}' && needs.matrix.outputs.matrix != '' }}
     name: Deploy ${{ github.ref_name }} to ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
     runs-on: ubuntu-latest
-    needs: prepare
+    needs: matrix
     strategy:
       fail-fast: true
       max-parallel: 1
-      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
     environment: ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
     steps:
       - name: Checkout
