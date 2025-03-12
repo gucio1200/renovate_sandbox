@@ -5,7 +5,7 @@ set -e
 
 # Read environment variables
 DIR_DEPTH="${MATRIX_DIR_DEPTH}"
-INPUT_LIST=(${CHANGED_FILES})  # Expecting CHANGED_FILES as space-separated string
+INPUT_LIST=(${CHANGED_FILES})
 
 # Initialize the JSON output
 OUTPUT='{"include": []}'
