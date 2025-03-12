@@ -54,7 +54,7 @@ jobs:
 
   deploy:
     if: ${{ needs.matrix.outputs.matrix != '{"include":[]}' && needs.matrix.outputs.matrix != '' }}
-    name: Deploy ${{ github.ref_name }} to ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
+    name: ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
     runs-on: ubuntu-latest
     needs: matrix
     strategy:
