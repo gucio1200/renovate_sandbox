@@ -12,7 +12,7 @@ concurrency:
   group: ${{ github.workflow }}
 
 env:
-  MATRIX_DIR_DEPTH: 3
+  DIR_DEPTH: 3
 
 jobs:
   matrix:
@@ -40,7 +40,7 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          MATRIX_OUTPUT=$(MATRIX_DIR_DEPTH=${{ env.MATRIX_DIR_DEPTH }} CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./generate_matrix.sh)
+          MATRIX_OUTPUT=$(DIR_DEPTH=${{ env.DIR_DEPTH }} CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./generate_matrix.sh)
           echo $MATRIX_OUTPUT
           echo "matrix=$MATRIX_OUTPUT" >> "$GITHUB_OUTPUT"
 

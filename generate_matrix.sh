@@ -4,7 +4,7 @@
 set -e
 
 # Read environment variables
-DIR_DEPTH="${MATRIX_DIR_DEPTH}"  # Specifies how deep to search in the directory structure
+DIR_DEPTH="${DIR_DEPTH}"  # Specifies how deep to search in the directory structure
 INPUT_LIST=(${CHANGED_FILES})    # List of changed files from environment variables, converted to an array
 
 # Initialize the JSON output with an empty 'include' array
