@@ -68,5 +68,5 @@ jobs:
 
       - run: echo ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
 
-      - name: Force failure
-        run: exit 1
+#      - name: Force failure
+#        run: exit 1
