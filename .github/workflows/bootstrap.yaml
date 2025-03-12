@@ -34,7 +34,7 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          MATRIX_OUTPUT=$(CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./generate_matrix.sh)
+          MATRIX_OUTPUT=$(CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./.github/scripts/generate_matrix.sh)
           echo $MATRIX_OUTPUT
           echo "matrix=$MATRIX_OUTPUT" >> "$GITHUB_OUTPUT"
 
