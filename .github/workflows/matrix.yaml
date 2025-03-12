@@ -40,21 +40,8 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          DIR_DEPTH=${{ env.MATRIX_DIR_DEPTH }}
-          INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
-          OUTPUT='{"include": []}'
-          for path in "${INPUT_LIST[@]}"; do
-            DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
-            SUBFOLDERS=$(find "$path" -type d -mindepth $((DIR_DEPTH - DEPTH)) -maxdepth $((DIR_DEPTH - DEPTH)))
-            for folder in $SUBFOLDERS; do
-              IFS='/' read -r workspace region cluster <<< "$folder"
-              OUTPUT=$(echo "$OUTPUT" | jq --arg workspace "$workspace" --arg region "$region" --arg cluster "$cluster" \
-              '.include += [{"workspace": $workspace, "region": $region, "cluster": $cluster}]')
-            done
-          done
-          OUTPUT=$(echo "$OUTPUT" | jq -c '.include |= unique')
-          echo $OUTPUT
-          echo "matrix=$OUTPUT" >> $GITHUB_OUTPUT
+          MATRIX_OUTPUT=$(MATRIX_DIR_DEPTH=${{ env.MATRIX_DIR_DEPTH }} CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./generate_matrix.sh)
+          echo "matrix=$MATRIX_OUTPUT" >> "$GITHUB_OUTPUT"
 
   terraform:
     if: ${{ needs.matrix.outputs.matrix != '{"include":[]}' && needs.matrix.outputs.matrix != '' }}
