@@ -1,4 +1,4 @@
-name: Matrix
+name: Bootstrap
 
 on:
   pull_request:
