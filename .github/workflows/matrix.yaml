@@ -7,11 +7,12 @@ on:
   push:
     branches:
       - "**"
-    paths:
-      - "**"
 
 concurrency:
   group: ${{ github.workflow }}
+
+env:
+  MATRIX_DIR_DEPTH: 3
 
 jobs:
   matrix:
@@ -39,12 +40,12 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          DEPTH_LOOK=3
+          DIR_DEPTH=${{ env.MATRIX_DIR_DEPTH }}
           INPUT_LIST=(${{ steps.changed-files.outputs.all_changed_files }})
           OUTPUT='{"include": []}'
           for path in "${INPUT_LIST[@]}"; do
             DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
-            SUBFOLDERS=$(find "$path" -type d -mindepth $((DEPTH_LOOK - DEPTH)) -maxdepth $((DEPTH_LOOK - DEPTH)))
+            SUBFOLDERS=$(find "$path" -type d -mindepth $((DIR_DEPTH - DEPTH)) -maxdepth $((DIR_DEPTH - DEPTH)))
             for folder in $SUBFOLDERS; do
               IFS='/' read -r workspace region cluster <<< "$folder"
               OUTPUT=$(echo "$OUTPUT" | jq --arg workspace "$workspace" --arg region "$region" --arg cluster "$cluster" \
