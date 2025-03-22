@@ -22,7 +22,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@3a33fa99abc9ece6c239626365fb8bead3882018
+        uses: tj-actions/changed-files@9cc867cd4a5df418b1538ffecaaef26144a0e51f
         with:
           dir_names: true
           files: |
