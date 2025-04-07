@@ -1,6 +1,11 @@
 name: Bootstrap
 
 on:
+  on.workflow_call:
+    inputs:
+      manual_path:
+        description: 'Provided paths (comma-separated if multiple) without "/" at beggining.'
+        required: false
   workflow_dispatch:
     inputs:
       manual_path:
