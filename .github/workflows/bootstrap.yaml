@@ -67,5 +67,15 @@ jobs:
 
       - run: echo ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
 
-#      - name: Force failure
-#        run: exit 1
+      - name: Check Cluster Bootstrap secret
+        run: |
+          ENV_NAME="${{ github.job }}"
+          CLEANED_ENV=$(echo "$ENV_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
+          SECRET_NAME="${CLEANED_ENV}_SECRET"
+          SECRET_VALUE="${!SECRET_NAME}"
+          if [ -z "$SECRET_VALUE" ]; then
+            echo "❌ Secret $SECRET_NAME is not set or empty"
+            exit 1
+          else
+            echo "✅ Secret $SECRET_NAME exists and is not empty"
+          fi
