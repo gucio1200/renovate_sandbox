@@ -34,7 +34,15 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          MATRIX_OUTPUT=$(CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}" ./.github/scripts/generate_matrix.sh)
+          CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
+          MANUAL_PATHS="${{ github.event.inputs.manual_path }}"
+
+          if [[ -n "$MANUAL_PATHS" ]]; then
+            echo "Manual paths provided: $MANUAL_PATHS"
+            CHANGED_FILES="${CHANGED_FILES}"$'\n'"${MANUAL_PATHS//,/\\n}"
+          fi
+
+          MATRIX_OUTPUT=$(CHANGED_FILES="$CHANGED_FILES" ./.github/scripts/generate_matrix.sh)
           echo $MATRIX_OUTPUT
           echo "matrix=$MATRIX_OUTPUT" >> "$GITHUB_OUTPUT"
 

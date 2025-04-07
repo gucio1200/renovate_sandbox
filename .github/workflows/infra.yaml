@@ -1,4 +1,4 @@
-name: Matrix
+name: Infra
 
 on:
   pull_request:
