@@ -73,6 +73,10 @@ jobs:
           ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
           CLEANED_ENV=$(echo "$ENV_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
           SECRET_NAME="${CLEANED_ENV}_SECRET"
-          echo "Sanitized environment: $CLEANED_ENV"
-          echo "Resolved secret name: $SECRET_NAME"
-          echo "secret_name=$SECRET_NAME" >> $GITHUB_OUTPUT
+          SECRET_VALUE="${{ secrets[SECRET_NAME] }}"
+          if [ -z "$SECRET_VALUE" ]; then
+            echo "The secret $SECRET_NAME is empty or not set."
+            exit 1
+          else
+            echo "The secret $SECRET_NAME is set."
+          fi
