@@ -82,7 +82,7 @@ jobs:
           echo "We look for: $SECRET_NAME"
           echo "secret_name=$SECRET_NAME" >> $GITHUB_OUTPUT
 
-      - name: Check if Env secret is empty
+      - name: Check if Env secret exist
         id: check-secret
         env:
           SECRET_VALUE: ${{ secrets[steps.set-secret.outputs.secret_name] }}
