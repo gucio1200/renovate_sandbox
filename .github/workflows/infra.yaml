@@ -65,6 +65,6 @@ jobs:
               workflow_id: 'bootstrap.yaml',
               ref: 'main',
               inputs: {
-                manual_path: ${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}
+                manual_path: "${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}"
               }
             });
