@@ -73,7 +73,8 @@ jobs:
           ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
           CLEANED_ENV=$(echo "$ENV_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
           SECRET_NAME="${CLEANED_ENV}_SECRET"
-          SECRET_VALUE="${{ secrets[SECRET_NAME] }}"
+          SECRET_VALUE="${!SECRET_NAME}"
+          echo $SECRET_VALUE
           if [ -z "$SECRET_VALUE" ]; then
             echo "The secret $SECRET_NAME is empty or not set."
             exit 1
