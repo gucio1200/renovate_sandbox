@@ -71,6 +71,7 @@ jobs:
           ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
           CLEANED_ENV=$(echo "$ENV_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
           SECRET_NAME="${CLEANED_ENV}_SECRET"
+          echo "We look for: $SECRET_NAME"
           echo "secret_name=$SECRET_NAME" >> $GITHUB_OUTPUT
 
       - name: Check if Env secret is empty
