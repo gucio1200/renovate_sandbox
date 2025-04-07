@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       manual_path:
-        description: 'Optional manually provided path (comma-separated if multiple) without / at beggining...'
+        description: 'Provided paths (comma-separated if multiple) without "/" at beggining.'
         required: false
   pull_request:
     branches:
