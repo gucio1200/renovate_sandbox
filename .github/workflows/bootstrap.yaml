@@ -65,8 +65,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - run: echo ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
-
       - name: Set Secret Name for env
         id: set-secret
         run: |
