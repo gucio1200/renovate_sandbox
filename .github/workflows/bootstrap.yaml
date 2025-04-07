@@ -67,7 +67,7 @@ jobs:
 
       - run: echo ${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}
 
-      - name: Set Secret Name
+      - name: Set Secret Name for env
         id: set-secret
         run: |
           ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
@@ -78,10 +78,11 @@ jobs:
       - name: Check if secret is empty
         env:
           SECRET_VALUE: ${{ secrets[steps.set-secret.outputs.secret_name] }}
+          SECRET_NAME: ${{ steps.set-secret.outputs.secret_name }}
         run: |
           if [ -z "$SECRET_VALUE" ]; then
-            echo "The secret $SECRET_VALUE is empty or not set."
+            echo "The secret $SECRET_NAME is empty or not set."
             exit 1
           else
-            echo "The secret $SECRET_VALUE is set."
+            echo "The secret $SECRET_NAME is set."
           fi
