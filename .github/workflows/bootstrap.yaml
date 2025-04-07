@@ -69,7 +69,7 @@ jobs:
 
       - name: Check Cluster Bootstrap secret
         run: |
-          ENV_NAME="${{ github.job }}"
+          ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
           CLEANED_ENV=$(echo "$ENV_NAME" | tr '-' '_' | tr '[:lower:]' '[:upper:]')
           SECRET_NAME="${CLEANED_ENV}_SECRET"
           SECRET_VALUE="${!SECRET_NAME}"
