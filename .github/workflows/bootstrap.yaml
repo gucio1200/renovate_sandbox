@@ -1,6 +1,11 @@
 name: Bootstrap
 
 on:
+  workflow_dispatch:
+    inputs:
+      manual_path:
+        description: 'Optional manually provided path (comma-separated if multiple)'
+        required: false
   pull_request:
     branches:
       - "**"
