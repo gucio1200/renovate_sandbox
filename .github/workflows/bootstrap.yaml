@@ -65,7 +65,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set Secret Name for env
+      - name: Env Secret Name to look for
         id: set-secret
         run: |
           ENV_NAME="${{ matrix.workspace }}-${{ matrix.region }}-${{ matrix.cluster }}"
@@ -73,7 +73,7 @@ jobs:
           SECRET_NAME="${CLEANED_ENV}_SECRET"
           echo "secret_name=$SECRET_NAME" >> $GITHUB_OUTPUT
 
-      - name: Check if secret is empty
+      - name: Check if Env secret is empty
         env:
           SECRET_VALUE: ${{ secrets[steps.set-secret.outputs.secret_name] }}
           SECRET_NAME: ${{ steps.set-secret.outputs.secret_name }}
