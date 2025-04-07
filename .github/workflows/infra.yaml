@@ -105,22 +105,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: terraform
     if: ${{ needs.terraform.outputs.has_secret == 'true' }}
-#    strategy:
-#      matrix:
-#        workspace: ${{ needs.terraform.outputs.workspace }}
-#        region: ${{ needs.terraform.outputs.region }}
-#        cluster: ${{ needs.terraform.outputs.cluster }}
-    steps:
-      - name: Trigger using github-script
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'bootstrap.yaml',
-              ref: 'main',
-              inputs: {
-                manual_path: "${{ needs.terraform.outputs.workspace }}/${{ needs.terraform.outputs.region }}/${{ needs.terraform.outputs.cluster }}"
-              }
-            });
+    strategy:
+      matrix:
+        workspace: ${{ needs.terraform.outputs.workspace }}
+        region: ${{ needs.terraform.outputs.region }}
+        cluster: ${{ needs.terraform.outputs.cluster }}
+    uses: gucio1200/renovate_sandbox/.github/workflows/bootstrap.yaml@main
+    with:
+      manual_path: "${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}"
