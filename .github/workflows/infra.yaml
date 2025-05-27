@@ -90,6 +90,7 @@ jobs:
         run: |
           if [ -z "$SECRET_VALUE" ]; then
             echo "The secret $SECRET_NAME is empty or not set."
+            exit 1
           else
             echo "The secret $SECRET_NAME is set."
             echo "has_secret=true" >> $GITHUB_OUTPUT
