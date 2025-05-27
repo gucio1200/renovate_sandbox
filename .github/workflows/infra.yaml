@@ -51,7 +51,7 @@ jobs:
 
           if [[ -n "$MANUAL_PATHS" ]]; then
             echo "Manual paths provided: $MANUAL_PATHS"
-            CHANGED_FILES="$(echo "$MANUAL_PATHS" | sed -E 's/[[:space:]]*,[[:space:]]*/ /g')"
+            CHANGED_FILES="${MANUAL_PATHS//,/ }"
           fi
 
           MATRIX_OUTPUT=$(CHANGED_FILES="$CHANGED_FILES" ./.github/scripts/generate_matrix.sh)
