@@ -1,1 +1,1 @@
-bootstrap_varss
+bootstrap_vars
