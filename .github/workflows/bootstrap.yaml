@@ -44,7 +44,7 @@ jobs:
 
           if [[ -n "$MANUAL_PATHS" ]]; then
             echo "Manual paths provided: $MANUAL_PATHS"
-            CHANGED_FILES="${CHANGED_FILES}"$'\n'"${MANUAL_PATHS//,/\\n}"
+            CHANGED_FILES="${MANUAL_PATHS//,/\\n}"
           fi
 
           MATRIX_OUTPUT=$(CHANGED_FILES="$CHANGED_FILES" ./.github/scripts/generate_matrix.sh)
