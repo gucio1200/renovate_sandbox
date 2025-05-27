@@ -9,9 +9,14 @@ on:
   pull_request:
     branches:
       - "**"
+    paths-ignore:
+      - '*/*/*/bootstrap/**'
+
   push:
     branches:
       - "**"
+    paths-ignore:
+      - '*/*/*/bootstrap/**'
 
 permissions:
   contents: read

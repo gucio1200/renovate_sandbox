@@ -9,9 +9,14 @@ on:
   pull_request:
     branches:
       - "**"
+    paths:
+      - '*/*/*/bootstrap/**'
+
   push:
     branches:
       - "**"
+    paths:
+      - '*/*/*/bootstrap/**'
 
 concurrency:
   group: ${{ github.workflow }}
