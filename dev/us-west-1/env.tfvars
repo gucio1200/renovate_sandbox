@@ -1,1 +1,1 @@
-us-west-11
+us-west-1
