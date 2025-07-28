@@ -72,3 +72,11 @@ jobs:
 
       - name: ECHO
         run: echo "${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}"
+
+      - name: Set envs
+        id: tf_envs
+        run: echo "tf_envs=$(../../../find-envs.sh)" >> "$GITHUB_OUTPUT"
+        working-directory: ${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}/bootstrap
+
+      - name: echo
+        run: echo ${{ steps.tf_envs.outputs.tf_envs }}
