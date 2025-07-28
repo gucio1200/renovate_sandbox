@@ -11,6 +11,11 @@ OUTPUT='{"include": []}'
 
 # Loop through each changed file path
 for path in "${INPUT_LIST[@]}"; do
+  # Support trigger on shared secrets change
+  if [[ "$path" =~ ^([^/]+)/secrets ]]; then
+    path="${BASH_REMATCH[1]}"
+  fi
+
   # Determine the depth of the current file path based on the number of '/' characters
   DEPTH=$(echo "$path" | awk -F'/' '{print NF}')
   REQUIRED_DEPTH=$((3 - DEPTH))
