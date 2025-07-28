@@ -75,7 +75,7 @@ jobs:
 
       - name: Set envs
         id: tf_envs
-        run: echo "tf_envs=$(../../../find-envs.sh)" >> "$GITHUB_OUTPUT"
+        run: echo "tf_envs=$(../../../../.github/scripts/find-envs.sh)" >> "$GITHUB_OUTPUT"
         working-directory: ${{ matrix.workspace }}/${{ matrix.region }}/${{ matrix.cluster }}/bootstrap
 
       - name: echo
