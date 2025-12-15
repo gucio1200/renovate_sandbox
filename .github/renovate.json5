@@ -19,8 +19,7 @@
       ],
       "depNameTemplate": "{{packageName}}",
       "datasourceTemplate": "{{datasource}}",
-      "versioningTemplate": "semver",
-      "registryUrlTemplate": "{{registryUrl}}"
+      "versioningTemplate": "semver"
     }
   ]
 }
