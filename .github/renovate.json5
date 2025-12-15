@@ -5,8 +5,7 @@
   ],
   "customDatasources": {
     "aks-versions": {
-      "format": "json",
-      "defaultRegistryUrlTemplate": "{{registryUrl}}"
+      "format": "json"
     }
   },
   "customManagers": [
