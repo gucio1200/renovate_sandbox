@@ -4,7 +4,8 @@
     'config:recommended',
   ],
   customDatasources: {
-    'aks-versions': {
+    'aks': {
+      defaultRegistryUrlTemplate: 'https://aksver.k8sj.io/eastus',
       format: 'json',
     },
   },
@@ -17,8 +18,8 @@
       matchStrings: [
         '# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<terraformVar>\\w+)\\s*=\\s*"(?<currentValue>[^"]+)"',
       ],
-      depNameTemplate: '{{packageName}}',
-      datasourceTemplate: '{{datasource}}',
+      depNameTemplate: 'aks',
+      datasourceTemplate: 'custom.aks',
       versioningTemplate: 'semver',
     },
   ],
