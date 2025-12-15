@@ -23,9 +23,7 @@
   "customDatasources": {
     "aks-versions": {
       "format": "json",
-      "transformTemplates": [
-        "{ \"releases\": versions.{\"version\": $} }"
-      ]
+      "transformTemplates": ["$"]
     }
   }
 }
