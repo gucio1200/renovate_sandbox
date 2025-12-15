@@ -25,5 +25,18 @@
       "format": "json",
       "transformTemplates": ["$"]
     }
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [".+\\.tf$"],
+      "matchStrings": [
+        "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<depName>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "depNameTemplate": "{{packageName}}",
+      "datasourceTemplate": "{{datasource}}",
+      "versioningTemplate": "semver",
+      "registryUrlTemplate": "{{registryUrl}}"
+    }
+  ]
 }
