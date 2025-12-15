@@ -22,8 +22,7 @@
   },
   "customDatasources": {
     "aks-versions": {
-      "format": "json",
-      "transformTemplates": ["$"]
+      "format": "json"
     }
   },
   "customManagers": [
