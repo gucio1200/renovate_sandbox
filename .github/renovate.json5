@@ -6,6 +6,7 @@
   "customDatasources": {
     "aks-versions": {
       "format": "json",
+      "defaultRegistryUrlTemplate": "{{registryUrl}}",
       "transformTemplates": [
         "{\"releases\": releases}"
       ]
@@ -18,7 +19,7 @@
         ".+\\.tf$"
       ],
       "matchStrings": [
-        "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<depName>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+        "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<terraformVar>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
       "depNameTemplate": "{{packageName}}",
       "datasourceTemplate": "{{datasource}}",
