@@ -1,15 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": [
+    "config:base"
+  ],
   "customDatasources": {
     "aks-versions": {
-      "format": "json"
+      "format": "json",
+      "transformTemplates": [
+        "{\"releases\": releases}"
+      ]
     }
   },
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [".+\\.tf$"],
+      "fileMatch": [
+        ".+\\.tf$"
+      ],
       "matchStrings": [
         "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<depName>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
