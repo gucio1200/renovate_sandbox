@@ -3,10 +3,7 @@
   "extends": ["config:base"],
   "customDatasources": {
     "aks-versions": {
-      "format": "json",
-      "transformTemplates": [
-        "{ \"releases\": releases }"
-      ]
+      "format": "json"
     }
   },
   "customManagers": [
