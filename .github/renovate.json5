@@ -6,10 +6,7 @@
   "customDatasources": {
     "aks-versions": {
       "format": "json",
-      "defaultRegistryUrlTemplate": "{{registryUrl}}",
-      "transformTemplates": [
-        "{\"releases\": releases}"
-      ]
+      "defaultRegistryUrlTemplate": "{{registryUrl}}"
     }
   },
   "customManagers": [
