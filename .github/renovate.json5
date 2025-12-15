@@ -1,25 +1,25 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
   ],
-  "customDatasources": {
-    "aks-versions": {
-      "format": "json"
-    }
+  customDatasources: {
+    'aks-versions': {
+      format: 'json',
+    },
   },
-  "customManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "fileMatch": [
-        ".+\\.tf$"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/.+\\.tf$/',
       ],
-      "matchStrings": [
-        "# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<terraformVar>\\w+)\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+      matchStrings: [
+        '# renovate:\\s*depName=(?<packageName>[^\\s]+)\\s*datasource=(?<datasource>[^\\s]+)(?:\\s*registryUrl=(?<registryUrl>[^\\s]+))?\\s*\\n\\s*(?<terraformVar>\\w+)\\s*=\\s*"(?<currentValue>[^"]+)"',
       ],
-      "depNameTemplate": "{{packageName}}",
-      "datasourceTemplate": "{{datasource}}",
-      "versioningTemplate": "semver"
-    }
-  ]
+      depNameTemplate: '{{packageName}}',
+      datasourceTemplate: '{{datasource}}',
+      versioningTemplate: 'semver',
+    },
+  ],
 }
