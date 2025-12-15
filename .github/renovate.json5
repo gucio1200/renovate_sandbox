@@ -19,5 +19,13 @@
   },
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
+  },
+  "customDatasources": {
+    "aks-versions": {
+      "format": "json",
+      "transformTemplates": [
+        "{ \"releases\": versions.{\"version\": $} }"
+      ]
+    }
   }
- }
+}
