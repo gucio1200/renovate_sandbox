@@ -14,5 +14,5 @@ locals {
   # renovate: depName=traefik datasource=helm registryUrl=https://traefik.github.io/charts
   traefik_version          = "33.2.1"
   # renovate: depName=aks datasource=custom.aksver registryUrl=https://aksver.k8sj.io/eastus
-  kubernetes_version       = "1.26.10"
+  kubernetes_version       = "1.28.5"
 }
